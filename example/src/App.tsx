@@ -1,16 +1,36 @@
-import * as React from 'react';
-import { AmityUiKitProvider, AmityUiKitSocial } from 'amity-react-native-social-ui-kit';
+import React, {useState} from 'react';
 
+// import {
+//   AmityUiKitProvider,
+//   AmityUiKitChat,
+// } from '@amityco/react-native-chat-ui-kit'
+import {
+  AmityUiKitProvider,
+  AmityUiKitSocial,
+} from 'amity-react-native-social-ui-kit'
+import LoginPage from './Login';
+
+export interface ILoginForm {
+  userId: string;
+  apiKey: string;
+  apiRegion: string;
+}
 export default function App() {
+  const [form, setForm] = useState<ILoginForm>();
 
-  return (
+  const submitForm = (value: ILoginForm) => {
+    setForm(value);
+  };
+  return !form ? (
+    <LoginPage onSubmit={submitForm} />
+  ) : (
+    
     <AmityUiKitProvider
-      apiKey="YOUR_API_KEY" // Put your apiKey
-      apiRegion="API_REGION" // Put your apiRegion
-      userId="USER_ID" // Put your UserId
-      displayName="DISPLAYNAME" // Put your displayName
-      apiEndpoint="API_ENDPOINT" //"https://api.{apiRegion}.amity.co"
-    >
+      apiKey={form.apiKey}
+      apiRegion={form.apiRegion}
+      userId={form.userId}
+      displayName={form.userId}
+      apiEndpoint="https://api.sg.amity.co">
       <AmityUiKitSocial />
     </AmityUiKitProvider>
   );
