@@ -15,7 +15,7 @@ import {
   storyRing,
 } from '../../../svg/svg-xml-list';
 import useConfig from '../../../hooks/useConfig';
-import { ElementID } from '../../../util/enumUIKitID';
+import { ComponentID, ElementID } from '../../../util/enumUIKitID';
 
 const StoryCircleListItem = ({
   item,
@@ -27,17 +27,19 @@ const StoryCircleListItem = ({
   const [, setIsPressed] = useState(item?.seen);
 
   const prevSeen = usePrevious(item?.seen);
-  const { getConfig } = useConfig();
+  const { getUiKitConfig } = useConfig();
   const [storyRingColor, setStoryRingColor] = useState<string[]>([]);
 
   useLayoutEffect(() => {
-    const colorRings: string[] = getConfig(
-      ElementID.StoryRingOnStoryTab
-    ).progress_color;
+    const colorRings = getUiKitConfig({
+      id: ElementID.StoryRing,
+      type: 'element',
+      component: ComponentID.StoryTab,
+    })?.progress_color as string[];
     setStoryRingColor(colorRings);
   }, []);
   useEffect(() => {
-    if (prevSeen != item?.seen) {
+    if (prevSeen !== item?.seen) {
       setIsPressed(item?.seen);
     }
   }, [item?.seen]);
