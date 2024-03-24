@@ -1,6 +1,9 @@
 import { NativeModules, Platform } from 'react-native';
 import AmityUiKitProvider from './providers/amity-ui-kit-provider';
 import AmityUiKitSocial from './routes/SocialNavigator';
+import Explore from './screens/Explore';
+import UserProfile from './screens/UserProfile/UserProfile';
+import CommunitySearch from './screens/CommunitySearch';
 
 const LINKING_ERROR =
   `The package 'amity-react-native-social-ui-kit' doesn't seem to be linked. Make sure: \n\n` +
@@ -22,4 +25,10 @@ const AmityReactNativeSocialUiKit = NativeModules.AmityReactNativeSocialUiKit
 export function multiply(a: number, b: number): Promise<number> {
   return AmityReactNativeSocialUiKit.multiply(a, b + 2 + 3);
 }
-export { AmityUiKitProvider, AmityUiKitSocial };
+export {
+  AmityUiKitProvider,
+  AmityUiKitSocial,
+  Explore,
+  UserProfile,
+  CommunitySearch,
+};

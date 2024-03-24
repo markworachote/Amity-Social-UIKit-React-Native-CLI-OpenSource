@@ -3,9 +3,15 @@ import * as React from 'react';
 import { useEffect, useState } from 'react';
 // import { useTranslation } from 'react-i18next';
 
-import { View, TouchableOpacity, LogBox } from 'react-native';
+import {
+  View,
+  TouchableOpacity,
+  LogBox,
+  Text,
+  useColorScheme,
+} from 'react-native';
 import { SvgXml } from 'react-native-svg';
-import { plusIcon, searchIcon } from '../../svg/svg-xml-list';
+import { plusIcon, profileIcon, searchIcon } from '../../svg/svg-xml-list';
 import FloatingButton from '../../components/FloatingButton';
 import useAuth from '../../hooks/useAuth';
 import Explore from '../Explore';
@@ -32,9 +38,12 @@ export default function Home() {
   const { excludes } = useConfig();
   const [activeTab, setActiveTab] = useState<string>(TabName.NewsFeed);
   const navigation = useNavigation<NativeStackNavigationProp<any>>();
-
+  const colorScheme = useColorScheme(); // Use useColorScheme
   const onClickSearch = () => {
     navigation.navigate('CommunitySearch');
+  };
+  const onClickProfile = () => {
+    navigation.navigate('UserProfileSetting');
   };
   const onClickAddCommunity = () => {
     navigation.navigate('CreateCommunity');
@@ -50,15 +59,42 @@ export default function Home() {
             <SvgXml xml={plusIcon(theme.colors.base)} width="25" height="25" />
           </TouchableOpacity>
         ) : (
-          <TouchableOpacity onPress={onClickSearch} style={styles.btnWrap}>
-            <SvgXml
-              xml={searchIcon(theme.colors.base)}
-              width="25"
-              height="25"
-            />
-          </TouchableOpacity>
+          <>
+            <TouchableOpacity onPress={onClickSearch} style={styles.btnWrap}>
+              <View style={styles.circularButton}>
+                <SvgXml
+                  xml={searchIcon(theme.colors.base)}
+                  width="25"
+                  height="25"
+                />
+              </View>
+            </TouchableOpacity>
+            {/* <TouchableOpacity onPress={onClickProfile} style={styles.btnWrap}>
+              <View style={styles.circularButton}>
+                <SvgXml
+                  xml={profileIcon(theme.colors.base)}
+                  width="20"
+                  height="20"
+                />
+              </View>
+            </TouchableOpacity> */}
+          </>
         ),
-      headerTitle: 'Community',
+      headerTitle: null,
+      headerLeft: () => (
+        // To make header left and bold
+        <View>
+          <Text
+            style={{
+              fontSize: 24,
+              fontWeight: 'bold',
+              color: 'black',
+            }}
+          >
+            Brokie
+          </Text>
+        </View>
+      ),
     });
   }, []);
 

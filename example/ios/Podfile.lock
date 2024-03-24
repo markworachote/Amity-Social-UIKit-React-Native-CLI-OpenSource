@@ -1,5 +1,5 @@
 PODS:
-  - amity-react-native-social-ui-kit (0.1.2):
+  - amity-react-native-social-ui-kit (0.1.3):
     - RCT-Folly (= 2021.07.22.00)
     - React-Core
   - boost (1.76.0)
@@ -509,6 +509,9 @@ PODS:
     - React-perflogger (= 0.72.4)
   - RNCAsyncStorage (1.22.0):
     - React-Core
+  - RNGestureHandler (2.15.0):
+    - RCT-Folly (= 2021.07.22.00)
+    - React-Core
   - RNScreens (3.29.0):
     - RCT-Folly (= 2021.07.22.00)
     - React-Core
@@ -590,6 +593,7 @@ DEPENDENCIES:
   - React-utils (from `../node_modules/react-native/ReactCommon/react/utils`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - "RNCAsyncStorage (from `../node_modules/@react-native-async-storage/async-storage`)"
+  - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNSVG (from `../node_modules/react-native-svg`)
   - SPTPersistentCache
@@ -706,6 +710,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon"
   RNCAsyncStorage:
     :path: "../node_modules/@react-native-async-storage/async-storage"
+  RNGestureHandler:
+    :path: "../node_modules/react-native-gesture-handler"
   RNScreens:
     :path: "../node_modules/react-native-screens"
   RNSVG:
@@ -714,7 +720,7 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
 SPEC CHECKSUMS:
-  amity-react-native-social-ui-kit: ed565decf466c06e2f42c6ce35fab19a801dfd0e
+  amity-react-native-social-ui-kit: 11cce2f90523fb91d46bf98e8c9823e75d250e01
   boost: 57d2868c099736d80fcd648bf211b4431e51a558
   CocoaAsyncSocket: 065fd1e645c7abab64f7a6a2007a48038fdc6a99
   DoubleConversion: 5189b271737e1565bdce30deb4a08d647e3f5f54
@@ -773,6 +779,7 @@ SPEC CHECKSUMS:
   React-utils: b79f2411931f9d3ea5781404dcbb2fa8a837e13a
   ReactCommon: 4b2bdcb50a3543e1c2b2849ad44533686610826d
   RNCAsyncStorage: c43e6d71e13bb4748503797784839e0fbbf89d56
+  RNGestureHandler: 7909c50383a18f0cb10ce1db7262b9a6da504c03
   RNScreens: 3c5b9f4a9dcde752466854b6109b79c0e205dad3
   RNSVG: ba3e7232f45e34b7b47e74472386cf4e1a676d0a
   SocketRocket: f32cd54efbe0f095c4d7594881e52619cfe80b17
@@ -782,4 +789,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: d321e818eda51b9aa4bfc40877c81996a9677528
 
-COCOAPODS: 1.14.3
+COCOAPODS: 1.15.2

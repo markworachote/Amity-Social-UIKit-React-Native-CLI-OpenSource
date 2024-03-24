@@ -6,6 +6,15 @@ export const useStyles = () => {
   const theme = useTheme() as MyMD3Theme;
 
   const styles = StyleSheet.create({
+    circularButton: {
+      width: 40,
+      height: 40,
+      borderRadius: 20,
+      backgroundColor: '#E9E9E9',
+      justifyContent: 'center',
+      alignItems: 'center',
+      marginHorizontal: 5, // Adjust as needed
+    },
     modalContainer: {
       flex: 1,
       justifyContent: 'flex-end',

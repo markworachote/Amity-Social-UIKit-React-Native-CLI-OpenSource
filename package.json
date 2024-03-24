@@ -109,7 +109,6 @@
   "engines": {
     "node": ">= 16.0.0"
   },
-  "packageManager": "^yarn@1.22.15",
   "jest": {
     "preset": "react-native",
     "modulePathIgnorePatterns": [
@@ -185,9 +184,10 @@
   },
   "dependencies": {
     "@amityco/ts-sdk-react-native": "^6.17.0",
-    "@react-navigation/native": "6.1.6",
+    "@react-navigation/bottom-tabs": "^6.5.18",
+    "@react-navigation/native": "^6.1.15",
     "@react-navigation/native-stack": "6.9.10",
-    "@react-navigation/stack": "6.3.16",
+    "@react-navigation/stack": "^6.3.27",
     "@reduxjs/toolkit": "^1.9.7",
     "@types/react-dom": "^18.2.15",
     "@types/react-native-video": "^5.0.18",
@@ -198,7 +198,7 @@
     "react-hook-form": "^7.49.3",
     "react-i18next": "12.1.5",
     "react-native-controlled-mentions": "^2.2.5",
-    "react-native-gesture-handler": "^2.14.0",
+    "react-native-gesture-handler": "^2.15.0",
     "react-native-insta-story": "^1.1.9",
     "react-native-media-controls": "^2.3.0",
     "react-native-modal-selector": "^2.1.2",
