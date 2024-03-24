@@ -37,7 +37,10 @@ import PostTypeChoiceModal from '../components/PostTypeChoiceModal/PostTypeChoic
 import CreatePoll from '../screens/CreatePoll/CreatePoll';
 import ReactionListScreen from '../screens/ReactionListScreen/ReactionListScreen';
 
-export default function SocialNavigator() {
+interface INavigator {
+  screen?: string
+}
+export default function SocialNavigator({ screen = 'Home'}: INavigator) {
   const Stack = createNativeStackNavigator<RootStackParamList>();
   const { isConnected } = useAuth();
   const theme = useTheme() as MyMD3Theme;
@@ -59,6 +62,7 @@ export default function SocialNavigator() {
               color: theme.colors.base,
             },
           }}
+          initialRouteName= {screen as keyof RootStackParamList }
         >
           <Stack.Screen name="Home" component={Home} options={{ title: '' }} />
           <Stack.Screen name="Explore" component={Explore} />
@@ -73,7 +77,7 @@ export default function SocialNavigator() {
           <Stack.Screen
             name="CategoryList"
             component={CategoryList}
-            options={({}) => ({
+            options={({ }) => ({
               title: 'Category',
             })}
           />
