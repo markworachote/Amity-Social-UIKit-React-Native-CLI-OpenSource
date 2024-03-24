@@ -36,11 +36,12 @@ import VideoPlayerFull from '../screens/VideoPlayerFullScreen';
 import PostTypeChoiceModal from '../components/PostTypeChoiceModal/PostTypeChoiceModal';
 import CreatePoll from '../screens/CreatePoll/CreatePoll';
 import ReactionListScreen from '../screens/ReactionListScreen/ReactionListScreen';
+import SettingsPage from '../screens/Settings';
 
 interface INavigator {
-  screen?: string
+  screen?: string;
 }
-export default function SocialNavigator({ screen = 'Home'}: INavigator) {
+export default function SocialNavigator({ screen = 'Home' }: INavigator) {
   const Stack = createNativeStackNavigator<RootStackParamList>();
   const { isConnected } = useAuth();
   const theme = useTheme() as MyMD3Theme;
@@ -62,7 +63,7 @@ export default function SocialNavigator({ screen = 'Home'}: INavigator) {
               color: theme.colors.base,
             },
           }}
-          initialRouteName= {screen as keyof RootStackParamList }
+          initialRouteName={screen as keyof RootStackParamList}
         >
           <Stack.Screen name="Home" component={Home} options={{ title: '' }} />
           <Stack.Screen name="Explore" component={Explore} />
@@ -77,7 +78,7 @@ export default function SocialNavigator({ screen = 'Home'}: INavigator) {
           <Stack.Screen
             name="CategoryList"
             component={CategoryList}
-            options={({ }) => ({
+            options={({}) => ({
               title: 'Category',
             })}
           />
@@ -208,6 +209,7 @@ export default function SocialNavigator({ screen = 'Home'}: INavigator) {
             component={VideoPlayerFull}
             options={{ headerShown: false }}
           />
+          <Stack.Screen name="SettingsPage" component={SettingsPage} />
           <Stack.Screen
             name="ReactionList"
             component={ReactionListScreen}

@@ -70,6 +70,7 @@ export type RootStackParamList = {
     communityId: string;
   };
   AllMyCommunity: undefined;
+  SettingsPage: undefined;
   CreateCommunity: undefined;
   VideoPlayer: { source: string };
   PendingPosts: { communityId: string; isModerator: boolean };

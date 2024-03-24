@@ -92,6 +92,7 @@ const PostTypeChoiceModal = () => {
         }),
       },
     ],
+    height: 175,
   };
 
   return (

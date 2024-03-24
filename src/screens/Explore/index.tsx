@@ -68,6 +68,12 @@ export default function Explore() {
     },
     [navigation]
   );
+  React.useLayoutEffect(() => {
+    navigation.setOptions({
+      headerTitleAlign: 'left',
+      headerTitleStyle: { fontSize: 24 },
+    });
+  }, [navigation]);
 
   const renderCategoryList = useCallback(() => {
     const truncatedCategoryList = categoryList.slice(0, 8);

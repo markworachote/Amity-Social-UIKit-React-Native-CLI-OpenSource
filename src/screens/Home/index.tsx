@@ -8,10 +8,11 @@ import {
   TouchableOpacity,
   LogBox,
   Text,
-  useColorScheme,
+  Appearance,
+  Modal,
 } from 'react-native';
 import { SvgXml } from 'react-native-svg';
-import { plusIcon, profileIcon, searchIcon } from '../../svg/svg-xml-list';
+import { plusIcon, searchIcon, profileIcon } from '../../svg/svg-xml-list';
 import FloatingButton from '../../components/FloatingButton';
 import useAuth from '../../hooks/useAuth';
 import Explore from '../Explore';
@@ -28,6 +29,7 @@ import { useNavigation } from '@react-navigation/native';
 import { useDispatch } from 'react-redux';
 import uiSlice from '../../redux/slices/uiSlice';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import SettingsModal from '../../components/SettingsModal/SettingsModal';
 LogBox.ignoreAllLogs(true);
 export default function Home() {
   const styles = useStyles();
@@ -38,12 +40,27 @@ export default function Home() {
   const { excludes } = useConfig();
   const [activeTab, setActiveTab] = useState<string>(TabName.NewsFeed);
   const navigation = useNavigation<NativeStackNavigationProp<any>>();
-  const colorScheme = useColorScheme(); // Use useColorScheme
+  const [showSettingsModal, setShowSettingsModal] = useState(false);
+  const systemTheme = Appearance.getColorScheme();
   const onClickSearch = () => {
     navigation.navigate('CommunitySearch');
   };
   const onClickProfile = () => {
-    navigation.navigate('UserProfileSetting');
+    setShowSettingsModal(true); // Show SettingsModal
+  };
+  const onProfileModalChoose = (type: string) => {
+    switch (type) {
+      case 'profile':
+        navigation.navigate('UserProfile', {
+          userId: (client as Amity.Client).userId as string,
+        });
+        break;
+      case 'settings':
+        navigation.navigate('SettingsPage');
+        break;
+      default:
+        break;
+    }
   };
   const onClickAddCommunity = () => {
     navigation.navigate('CreateCommunity');
@@ -61,7 +78,15 @@ export default function Home() {
         ) : (
           <>
             <TouchableOpacity onPress={onClickSearch} style={styles.btnWrap}>
-              <View style={styles.circularButton}>
+              <View
+                style={[
+                  styles.circularButton,
+                  {
+                    backgroundColor:
+                      systemTheme === 'dark' ? '#3d3e3d' : '#e3e5ea',
+                  },
+                ]}
+              >
                 <SvgXml
                   xml={searchIcon(theme.colors.base)}
                   width="25"
@@ -69,15 +94,23 @@ export default function Home() {
                 />
               </View>
             </TouchableOpacity>
-            {/* <TouchableOpacity onPress={onClickProfile} style={styles.btnWrap}>
-              <View style={styles.circularButton}>
+            <TouchableOpacity onPress={onClickProfile} style={styles.btnWrap}>
+              <View
+                style={[
+                  styles.circularButton,
+                  {
+                    backgroundColor:
+                      systemTheme === 'dark' ? '#3d3e3d' : '#e3e5ea',
+                  },
+                ]}
+              >
                 <SvgXml
                   xml={profileIcon(theme.colors.base)}
-                  width="20"
-                  height="20"
+                  width="19"
+                  height="19"
                 />
               </View>
-            </TouchableOpacity> */}
+            </TouchableOpacity>
           </>
         ),
       headerTitle: null,
@@ -88,7 +121,7 @@ export default function Home() {
             style={{
               fontSize: 24,
               fontWeight: 'bold',
-              color: 'black',
+              color: systemTheme === 'dark' ? 'white' : 'black',
             }}
           >
             Brokie
@@ -130,6 +163,17 @@ export default function Home() {
           <AllMyCommunity />
         </View>
       )}
+      <Modal
+        animationType="none"
+        transparent={true}
+        visible={showSettingsModal}
+        onRequestClose={() => setShowSettingsModal(false)} // Close modal when requested
+      >
+        <SettingsModal
+          onClose={() => setShowSettingsModal(false)}
+          onChoose={onProfileModalChoose}
+        />
+      </Modal>
     </View>
   );
 }
