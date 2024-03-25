@@ -15,6 +15,7 @@ export const AuthContext = React.createContext<AuthContextInterface>({
   sessionState: '',
   apiRegion: 'sg',
   authToken: '',
+  appLogout: () => {},
 });
 
 export const AuthContextProvider: FC<IAmityUIkitProvider> = ({
@@ -25,6 +26,7 @@ export const AuthContextProvider: FC<IAmityUIkitProvider> = ({
   apiEndpoint,
   children,
   authToken,
+  appLogout,
 }: IAmityUIkitProvider) => {
   const [error, setError] = useState('');
   const [isConnecting, setLoading] = useState(false);
@@ -93,6 +95,7 @@ export const AuthContextProvider: FC<IAmityUIkitProvider> = ({
   const logout = async () => {
     try {
       Client.stopUnreadSync();
+      appLogout();
       await Client.logout();
     } catch (e) {
       const errorText =

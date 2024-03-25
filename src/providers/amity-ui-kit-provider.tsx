@@ -15,6 +15,7 @@ export interface IAmityUIkitProvider {
   theme?: CustomColors;
   darkMode?: boolean;
   authToken?: string;
+  appLogout?: () => void;
 }
 
 interface CustomColors {
@@ -42,6 +43,7 @@ export default function AmityUiKitProvider({
   theme,
   darkMode = false,
   authToken,
+  appLogout,
 }: IAmityUIkitProvider) {
   const customizedTheme: MyMD3Theme = {
     ...DefaultTheme,
@@ -89,6 +91,7 @@ export default function AmityUiKitProvider({
         apiRegion={apiRegion}
         apiEndpoint={apiEndpoint}
         authToken={authToken}
+        appLogout={appLogout}
       >
         <ConfigProvider>
           <PaperProvider theme={darkMode ? defaultDarkTheme : customizedTheme}>

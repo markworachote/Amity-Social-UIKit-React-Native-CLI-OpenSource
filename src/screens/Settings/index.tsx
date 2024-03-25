@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   View,
   Text,
@@ -12,12 +12,14 @@ import { SvgXml } from 'react-native-svg';
 import { arrowBack, arrowRight } from '../../svg/svg-xml-list';
 import type { MyMD3Theme } from '../../providers/amity-ui-kit-provider';
 import { useTheme } from 'react-native-paper';
+import { AuthContext } from '../../providers/auth-provider';
 
 const SettingsPage: React.FC = () => {
   const navigation = useNavigation(); // Initialize navigation hook
   const theme = useTheme() as MyMD3Theme;
   const styles = useStyles();
   const systemTheme = Appearance.getColorScheme();
+  const { logout } = useContext(AuthContext); // Access logout function from AuthContext
   const settingsItems = [
     {
       title: 'Account',
@@ -64,6 +66,9 @@ const SettingsPage: React.FC = () => {
     switch (menu) {
       case 'Report a problem':
         openEmailApp();
+        break;
+      case 'Log out':
+        logout();
         break;
       default:
         break;
