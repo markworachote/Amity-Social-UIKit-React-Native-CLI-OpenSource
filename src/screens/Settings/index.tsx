@@ -1,4 +1,3 @@
-// index.tsx
 import React from 'react';
 import { View, Text, TouchableOpacity, Appearance } from 'react-native';
 import { useNavigation } from '@react-navigation/native'; // Import navigation hook
@@ -16,7 +15,7 @@ const SettingsPage: React.FC = () => {
   const settingsItems = [
     {
       title: 'Account',
-      items: ['Block users', 'Log out'],
+      items: ['Blocked users', 'Log out'],
     },
     {
       title: 'About',
@@ -36,24 +35,38 @@ const SettingsPage: React.FC = () => {
   }, [navigation, theme.colors.primary]);
 
   return (
-    <View style={styles.container}>
+    <View
+      style={[
+        styles.container,
+        { backgroundColor: systemTheme === 'dark' ? '#000' : '#F2F2F7' },
+      ]}
+    >
       {settingsItems.map((section, index) => (
         <View key={index} style={styles.section}>
           {section.title !== '' && (
-            <Text style={styles.sectionTitle}>{section.title}</Text>
+            <Text
+              style={[
+                styles.sectionTitle,
+                { color: systemTheme === 'dark' ? '#FFFFFF' : '#000000' }, // Change text color based on system theme
+              ]}
+            >
+              {section.title}
+            </Text>
           )}
           {section.items.map((item) => (
             <TouchableOpacity
               key={item}
               style={[
                 styles.item,
-                { backgroundColor: systemTheme === 'dark' ? '#444' : '#111' },
+                {
+                  backgroundColor: systemTheme === 'dark' ? '#1F1F1F' : '#FFF',
+                }, // Change background color based on system theme
               ]}
             >
               <Text
                 style={[
                   styles.itemText,
-                  { backgroundColor: systemTheme === 'dark' ? '#444' : '#111' },
+                  { color: systemTheme === 'dark' ? '#FFF' : '#000' }, // Change text color based on system theme
                   item === 'Delete account' && styles.deleteAccountText,
                 ]}
               >
