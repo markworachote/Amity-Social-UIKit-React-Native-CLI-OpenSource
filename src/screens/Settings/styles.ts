@@ -21,7 +21,7 @@ export const useStyles = () => {
     },
     sectionTitle: {
       color: 'white',
-      fontSize: 16,
+      fontSize: 14,
       fontWeight: 'bold',
       marginBottom: 10,
       paddingLeft: 10,

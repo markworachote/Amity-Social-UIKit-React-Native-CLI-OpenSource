@@ -1,5 +1,11 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, Appearance } from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Appearance,
+  Linking,
+} from 'react-native';
 import { useNavigation } from '@react-navigation/native'; // Import navigation hook
 import { useStyles } from './styles';
 import { SvgXml } from 'react-native-svg';
@@ -34,6 +40,36 @@ const SettingsPage: React.FC = () => {
     });
   }, [navigation, theme.colors.primary]);
 
+  const openEmailApp = () => {
+    const emailSubject = 'Reporting a problem';
+    const companyEmail = 'brokieapp@gmail.com';
+    const url = `mailto:${companyEmail}?subject=${emailSubject}`;
+
+    Linking.canOpenURL(url).then((supported) => {
+      if (supported) {
+        Linking.openURL(url)
+          .then(() => {
+            console.log('Email app opened successfully');
+          })
+          .catch((error) => {
+            console.error('Failed to open email app:', error);
+          });
+      } else {
+        console.error('Email app is not supported');
+      }
+    });
+  };
+
+  const onPress = (menu: string) => {
+    switch (menu) {
+      case 'Report a problem':
+        openEmailApp();
+        break;
+      default:
+        break;
+    }
+  };
+
   return (
     <View
       style={[
@@ -56,6 +92,9 @@ const SettingsPage: React.FC = () => {
           {section.items.map((item) => (
             <TouchableOpacity
               key={item}
+              onPress={() => {
+                onPress(item);
+              }}
               style={[
                 styles.item,
                 {

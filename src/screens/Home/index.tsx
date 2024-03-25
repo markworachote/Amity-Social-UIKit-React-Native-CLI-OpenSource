@@ -48,6 +48,7 @@ export default function Home() {
   const onClickProfile = () => {
     setShowSettingsModal(true); // Show SettingsModal
   };
+
   const onProfileModalChoose = (type: string) => {
     switch (type) {
       case 'profile':
