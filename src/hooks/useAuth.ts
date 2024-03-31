@@ -13,6 +13,7 @@ const useAuth = (): AuthContextInterface => {
     error,
     sessionState,
     apiRegion,
+    bannerAd,
   } = useContext(AuthContext);
 
   return {
@@ -24,6 +25,7 @@ const useAuth = (): AuthContextInterface => {
     isConnected,
     sessionState,
     apiRegion,
+    bannerAd,
   };
 };
 

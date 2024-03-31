@@ -9,4 +9,5 @@ export type AuthContextInterface = {
   apiRegion: string;
   authToken?: string;
   appLogout?: () => void;
+  bannerAd?: (screen: string) => React.ReactElement;
 };

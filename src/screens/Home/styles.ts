@@ -6,6 +6,12 @@ export const useStyles = () => {
   const theme = useTheme() as MyMD3Theme;
 
   const styles = StyleSheet.create({
+    adBanner: {
+      position: 'absolute',
+      bottom: 0,
+      left: 0,
+      right: 0,
+    },
     circularButton: {
       width: 40,
       height: 40,

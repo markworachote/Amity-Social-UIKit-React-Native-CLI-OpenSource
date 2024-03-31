@@ -16,6 +16,7 @@ export const AuthContext = React.createContext<AuthContextInterface>({
   apiRegion: 'sg',
   authToken: '',
   appLogout: () => {},
+  bannerAd: () => null,
 });
 
 export const AuthContextProvider: FC<IAmityUIkitProvider> = ({
@@ -27,6 +28,7 @@ export const AuthContextProvider: FC<IAmityUIkitProvider> = ({
   children,
   authToken,
   appLogout,
+  bannerAd,
 }: IAmityUIkitProvider) => {
   const [error, setError] = useState('');
   const [isConnecting, setLoading] = useState(false);
@@ -100,7 +102,6 @@ export const AuthContextProvider: FC<IAmityUIkitProvider> = ({
     } catch (e) {
       const errorText =
         (e as Error)?.message ?? 'Error while handling request!';
-
       Alert.alert(errorText);
     }
   };
@@ -116,6 +117,7 @@ export const AuthContextProvider: FC<IAmityUIkitProvider> = ({
         isConnected,
         sessionState,
         apiRegion: apiRegion.toLowerCase(),
+        bannerAd,
       }}
     >
       {children}
