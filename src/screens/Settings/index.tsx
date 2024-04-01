@@ -42,11 +42,12 @@ const SettingsPage: React.FC = () => {
     });
   }, [navigation, theme.colors.primary]);
 
-  const openEmailApp = () => {
-    const emailSubject = 'Reporting a problem';
+  const openEmailApp = (subject: string, body?: string) => {
     const companyEmail = 'brokieapp@gmail.com';
-    const url = `mailto:${companyEmail}?subject=${emailSubject}`;
-
+    let url = `mailto:${companyEmail}?subject=${subject}`;
+    if (body) {
+      url += `&body=${encodeURIComponent(body)}`;
+    }
     Linking.canOpenURL(url).then((supported) => {
       if (supported) {
         Linking.openURL(url)
@@ -65,10 +66,16 @@ const SettingsPage: React.FC = () => {
   const onPress = (menu: string) => {
     switch (menu) {
       case 'Report a problem':
-        openEmailApp();
+        openEmailApp('Reporting a problem');
         break;
       case 'Log out':
         logout();
+        break;
+      case 'Delete account':
+        openEmailApp(
+          'Request to delete account',
+          'Please provide your account email address. Make sure it matches the sender email address.'
+        );
         break;
       default:
         break;
