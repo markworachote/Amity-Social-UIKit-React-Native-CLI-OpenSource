@@ -122,6 +122,7 @@ export const EditProfile: React.FC<EditProfileProps> = ({
   const onDonePressed = async () => {
     try {
       setShowLoadingIndicator(true);
+      // Check if the text contains any emoji
       const userDetail: Partial<
         Pick<
           Amity.User,
@@ -141,12 +142,30 @@ export const EditProfile: React.FC<EditProfileProps> = ({
         userDetail.avatarFileId = file[0].fileId;
         userDetail.avatarCustomUrl = file[0].fileUrl;
       }
-      await UserRepository.updateUser(user.userId, userDetail);
+      if (!user.roles.includes('premium')) {
+        const containsEmoji = /[\uD800-\uDBFF][\uDC00-\uDFFF]/.test(
+          userDetail.displayName
+        );
+        if (containsEmoji) {
+          console.log('The text contains emoji.');
+          openAlert('Error', 'Only Premium member can add Emoji to their name');
+        } else {
+          await UserRepository.updateUser(user.userId, userDetail);
+        }
+      } else {
+        await UserRepository.updateUser(user.userId, userDetail);
+      }
     } catch (error) {
       console.error(error);
     } finally {
       setShowLoadingIndicator(false);
     }
+  };
+
+  const openAlert = (title: string, description: string) => {
+    Alert.alert(title, description, [
+      { text: 'OK', onPress: () => console.log('OK Pressed') },
+    ]);
   };
 
   const openCamera = async () => {
