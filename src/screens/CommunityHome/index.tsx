@@ -333,14 +333,20 @@ export default function CommunityHome({ route }: any) {
         )}
         {isJoin === false && joinCommunityButton()}
         {isJoin && isShowPendingArea && pendingPostArea()}
-        <CustomTab
-          tabName={[TabName.Timeline, TabName.Gallery]}
-          onTabChange={handleTab}
-        />
-        <Feed targetType="community" targetId={communityId} ref={feedRef} />
+        {isJoin && (
+          <>
+            <CustomTab
+              tabName={[TabName.Timeline, TabName.Gallery]}
+              onTabChange={handleTab}
+            />
+            <Feed targetType="community" targetId={communityId} ref={feedRef} />
+          </>
+        )}
       </ScrollView>
 
-      <FloatingButton onPress={handleOnPressPostBtn} isGlobalFeed={false} />
+      {isJoin && (
+        <FloatingButton onPress={handleOnPressPostBtn} isGlobalFeed={false} />
+      )}
     </View>
   );
 }
