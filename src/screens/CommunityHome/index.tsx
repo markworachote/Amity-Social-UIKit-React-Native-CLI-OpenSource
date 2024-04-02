@@ -12,6 +12,7 @@ import React, {
   useCallback,
   useMemo,
   useEffect,
+  useLayoutEffect,
 } from 'react';
 import {
   View,
@@ -42,7 +43,7 @@ import useFile from '../../hooks/useFile';
 import { TabName } from '../../enum/tabNameState';
 import uiSlice from '../../redux/slices/uiSlice';
 import { PostTargetType } from '../../enum/postTargetType';
-import { getAmityUser } from '../../providers/user-provider';
+import { premiumCommunityID } from '../../../src/util/constant';
 
 export type FeedRefType = {
   handleLoadMore: () => void;
@@ -61,23 +62,7 @@ export default function CommunityHome({ route }: any) {
   };
 
   const [isJoin, setIsJoin] = useState(true);
-  const [currentUser, setCurrentUser] = useState<Amity.User>(null);
-  useEffect(() => {
-    const fetchUserObject = async () => {
-      const { userObject } = await getAmityUser(
-        (client as Amity.Client).userId
-      );
-      setCurrentUser(userObject as Amity.User);
-      // Do something with userObject if needed
-    };
 
-    fetchUserObject();
-
-    // Cleanup function if necessary
-    return () => {
-      // Cleanup logic here
-    };
-  }, []);
   const [communityData, setCommunityData] =
     useState<Amity.LiveObject<Amity.Community>>();
   const avatarUrl = useFile({ fileId: communityData?.data.avatarFileId });
@@ -152,6 +137,13 @@ export default function CommunityHome({ route }: any) {
     navigation,
     subscribePostTopic,
   ]);
+  useLayoutEffect(() => {
+    if (communityId === premiumCommunityID) {
+      navigation.setOptions({
+        headerRight: () => null, // Hides the header right
+      });
+    }
+  }, [navigation]);
 
   useFocusEffect(
     useCallback(() => {
@@ -352,7 +344,7 @@ export default function CommunityHome({ route }: any) {
             <Text style={styles.editProfileText}>Edit Profile</Text>
           </TouchableOpacity>
         )}
-        {!isJoin && communityId !== '12345' && joinCommunityButton()}
+        {!isJoin && communityId !== premiumCommunityID && joinCommunityButton()}
         {isJoin && isShowPendingArea && pendingPostArea()}
         {isJoin && (
           <>
