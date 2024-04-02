@@ -40,6 +40,7 @@ import { useTheme } from 'react-native-paper';
 import type { MyMD3Theme } from '../../../providers/amity-ui-kit-provider';
 import { IMentionPosition } from '../../../screens/CreatePost';
 import RenderTextWithMention from '../PostList/Components/RenderTextWithMention';
+import { premiumRoleID } from '../../../../src/util/constant';
 
 export interface IComment {
   commentId: string;
@@ -257,6 +258,12 @@ export default function ReplyCommentList({
         <View style={styles.rightSection}>
           <View style={styles.headerRow}>
             <Text style={styles.headerText}>{user?.displayName}</Text>
+            {user?.roles?.includes(premiumRoleID) && (
+              <Image
+                source={require('../../../../assets/icon/premium-icon.png')}
+                style={styles.badge}
+              />
+            )}
           </View>
 
           <View style={styles.timeRow}>

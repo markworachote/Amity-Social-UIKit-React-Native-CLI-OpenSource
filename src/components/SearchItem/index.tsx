@@ -7,6 +7,7 @@ import { communityIcon, userIcon } from '../../svg/svg-xml-list';
 import { CategoryRepository } from '@amityco/ts-sdk-react-native';
 import { useNavigation } from '@react-navigation/native';
 import useAuth from '../../hooks/useAuth';
+import { premiumRoleID } from '../../../src/util/constant';
 export interface ISearchItem {
   targetId: string;
   targetType: string;
@@ -14,6 +15,7 @@ export interface ISearchItem {
   categoryIds?: string[];
   avatarFileId?: string;
   id?: string;
+  roles?: string[];
 }
 export default function SearchItem({
   target,
@@ -74,6 +76,19 @@ export default function SearchItem({
     return `https://api.${apiRegion}.amity.co/api/v3/files/${fileId}/download?size=medium`;
   };
 
+  const badge = () => {
+    if (target.roles !== undefined && target.roles !== null) {
+      if (target.roles.includes(premiumRoleID)) {
+        return (
+          <Image
+            source={require('../../../assets/icon/premium-icon.png')}
+            style={styles.badge}
+          />
+        );
+      }
+    }
+  };
+
   return (
     <TouchableOpacity style={styles.listItem} onPress={handleToggle}>
       <View style={styles.leftContainer}>
@@ -93,7 +108,10 @@ export default function SearchItem({
           />
         )}
         <View>
-          <Text style={styles.itemText}>{displayName()}</Text>
+          <View style={styles.displayNameView}>
+            <Text style={styles.itemText}>{displayName()}</Text>
+            {badge()}
+          </View>
           {target.targetType === 'community' && (
             <Text style={styles.categoryText}>{categoryName}</Text>
           )}

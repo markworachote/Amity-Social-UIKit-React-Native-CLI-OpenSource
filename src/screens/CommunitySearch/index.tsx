@@ -115,6 +115,7 @@ export default function CommunitySearch() {
           targetType: searchType,
           avatarFileId: (item?.avatarFileId as string) ?? '',
           displayName: item?.displayName as string,
+          roles: item?.roles as string[],
         };
       });
       setSearchList(searchUsers);

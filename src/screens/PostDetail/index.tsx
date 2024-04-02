@@ -203,6 +203,7 @@ const PostDetail = () => {
             userId: userObject.data.userId,
             displayName: userObject.data.displayName,
             avatarFileId: userObject.data.avatarFileId,
+            roles: userObject.data.roles,
           };
 
           return {

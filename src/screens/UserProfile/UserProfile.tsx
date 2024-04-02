@@ -31,6 +31,7 @@ import { useDispatch } from 'react-redux';
 import uiSlice from '../../redux/slices/uiSlice';
 import { PostTargetType } from '../../enum/postTargetType';
 import UserProfileGallery from './Components/UserProfileGallery';
+import { premiumRoleID } from '../../../src/util/constant';
 
 export default function UserProfile({ route }: any) {
   const theme = useTheme() as MyMD3Theme;
@@ -238,7 +239,15 @@ export default function UserProfile({ route }: any) {
               }
             />
             <View style={styles.userInfo}>
-              <Text style={styles.title}>{user?.displayName}</Text>
+              <View style={styles.displayNameView}>
+                <Text style={styles.title}>{user?.displayName}</Text>
+                {user?.roles.includes(premiumRoleID) && (
+                  <Image
+                    source={require('../../../assets/icon/premium-icon.png')}
+                    style={styles.badge}
+                  />
+                )}
+              </View>
               <View style={styles.horizontalText}>
                 <Text style={styles.textComponent}>
                   {followingCount + ' Following '}

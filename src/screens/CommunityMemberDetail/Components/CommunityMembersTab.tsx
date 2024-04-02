@@ -62,6 +62,7 @@ const CommunityMembersTab: React.FC<ICommunityMembersTab> = ({
               userId: member.user.userId,
               displayName: member.user.displayName,
               avatarFileId: member.user.avatarFileId,
+              roles: member.user.roles,
             };
           });
           setMember(userArray);
@@ -86,6 +87,7 @@ const CommunityMembersTab: React.FC<ICommunityMembersTab> = ({
         userId: item.userId,
         displayName: (item as Record<string, any>).user.displayName,
         avatarFileId: (item as Record<string, any>).user.avatarFileId,
+        roles: (item as Record<string, any>).user.roles,
       };
       return (
         <UserItem

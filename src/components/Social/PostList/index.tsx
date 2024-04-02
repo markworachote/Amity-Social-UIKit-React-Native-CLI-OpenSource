@@ -44,6 +44,7 @@ import feedSlice from '../../../redux/slices/feedSlice';
 import RenderTextWithMention from './Components/RenderTextWithMention';
 import { RootStackParamList } from '../../../routes/RouteParamList';
 import { useTimeDifference } from '../../../hooks/useTimeDifference';
+import { premiumRoleID } from '../../../../src/util/constant';
 
 export interface IPost {
   postId: string;
@@ -409,7 +410,15 @@ export default function PostList({
           <View style={styles.fillSpace}>
             <View style={styles.headerRow}>
               <TouchableOpacity onPress={handleDisplayNamePress}>
-                <Text style={styles.headerText}>{user?.displayName}</Text>
+                <View style={styles.displayNameView}>
+                  <Text style={styles.headerText}>{user?.displayName}</Text>
+                  {user.roles.includes(premiumRoleID) && (
+                    <Image
+                      source={require('../../../../assets/icon/premium-icon.png')}
+                      style={styles.badge}
+                    />
+                  )}
+                </View>
               </TouchableOpacity>
 
               {communityName && (

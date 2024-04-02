@@ -17,6 +17,10 @@ export const useStyles = () => {
       flexDirection: 'row',
       justifyContent: 'space-between',
     },
+    badge: {
+      width: 18,
+      height: 18,
+    },
     headerText: {
       fontWeight: '600',
       fontSize: 15,

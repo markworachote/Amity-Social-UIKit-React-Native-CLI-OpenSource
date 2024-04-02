@@ -18,6 +18,11 @@ export const useStyles = () => {
       borderRadius: 72,
       marginRight: 10,
     },
+    badge: {
+      marginLeft: 4,
+      width: 18,
+      height: 18,
+    },
     itemText: {
       fontSize: 15,
       fontWeight: '600',

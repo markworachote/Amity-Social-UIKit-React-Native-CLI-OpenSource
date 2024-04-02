@@ -13,6 +13,16 @@ export const useStyles = () => {
       paddingHorizontal: 16,
       backgroundColor: 'transparent',
     },
+    badge: {
+      width: 18,
+      height: 18,
+    },
+    displayNameView: {
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
     avatar: {
       width: 40,
       height: 40,

@@ -25,7 +25,7 @@ import {
 } from '../../../svg/svg-xml-list';
 
 import type { UserInterface } from '../../../types/user.interface';
-
+import { premiumRoleID } from '../../../../src/util/constant';
 import {
   addCommentReaction,
   removeCommentReaction,
@@ -213,6 +213,7 @@ const CommentList = ({
             userId: userObject.data.userId,
             displayName: userObject.data.displayName,
             avatarFileId: userObject.data.avatarFileId,
+            roles: userObject.data.roles,
           };
 
           return {
@@ -386,6 +387,7 @@ const CommentList = ({
       referenceType: 'comment',
     });
   };
+  console.log('why is role not here? ' + JSON.stringify(user));
 
   return (
     <View key={commentId} style={styles.commentWrap}>
@@ -405,6 +407,13 @@ const CommentList = ({
         <View style={styles.rightSection}>
           <View style={styles.headerRow}>
             <Text style={styles.headerText}>{user?.displayName}</Text>
+
+            {user?.roles?.includes(premiumRoleID) && (
+              <Image
+                source={require('../../../../assets/icon/premium-icon.png')}
+                style={styles.badge}
+              />
+            )}
           </View>
 
           <View style={styles.timeRow}>

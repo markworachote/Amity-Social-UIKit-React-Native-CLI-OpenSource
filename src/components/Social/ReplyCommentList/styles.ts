@@ -17,6 +17,10 @@ export const useStyles = () => {
       width: '100%',
       paddingTop: 4,
     },
+    badge: {
+      width: 18,
+      height: 18,
+    },
     headerSection: {
       paddingVertical: 12,
       flexDirection: 'row',

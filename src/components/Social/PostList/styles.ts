@@ -12,10 +12,20 @@ export const useStyles = () => {
       paddingHorizontal: 16,
       paddingTop: 4,
     },
+    displayNameView: {
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
     headerSection: {
       paddingVertical: 8,
       flexDirection: 'row',
       justifyContent: 'space-between',
+    },
+    badge: {
+      width: 18,
+      height: 18,
     },
     communityNameContainer: {
       flex: 1,

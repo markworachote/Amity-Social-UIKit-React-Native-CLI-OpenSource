@@ -15,7 +15,7 @@ import MediaSection from '../../../components/MediaSection';
 import { IMentionPosition } from '../../../screens/CreatePost';
 import { PostRepository } from '@amityco/ts-sdk-react-native';
 import RenderTextWithMention from '../PostList/Components/RenderTextWithMention';
-
+import { premiumRoleID } from '../../../../src/util/constant';
 export interface IPost {
   postId: string;
   data: Record<string, any>;
@@ -172,6 +172,12 @@ export default function PendingPostList({
             <View style={styles.headerRow}>
               <TouchableOpacity onPress={handleDisplayNamePress}>
                 <Text style={styles.headerText}>{user?.displayName}</Text>
+                {user?.roles?.includes(premiumRoleID) && (
+                  <Image
+                    source={require('../../../../assets/icon/premium-icon.png')}
+                    style={styles.badge}
+                  />
+                )}
               </TouchableOpacity>
             </View>
             <View style={styles.timeRow}>

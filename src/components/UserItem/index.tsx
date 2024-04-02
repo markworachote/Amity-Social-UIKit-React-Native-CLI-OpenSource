@@ -4,6 +4,7 @@ import { useStyles } from './styles';
 import RoundCheckbox from '../RoundCheckbox/index';
 import type { UserInterface } from 'src/types/user.interface';
 import useAuth from '../../hooks/useAuth';
+import { premiumRoleID } from '../../../src/util/constant';
 
 export default function UserItem({
   user,
@@ -32,6 +33,7 @@ export default function UserItem({
   };
 
   const displayName = () => {
+    console.log('check user role ' + user.displayName + '  ' + user.roles);
     if (user.displayName) {
       if (user.displayName!.length > maxLength) {
         return user.displayName!.substring(0, maxLength) + '..';
@@ -91,6 +93,12 @@ export default function UserItem({
           }
         />
         <Text style={styles.itemText}>{displayName()}</Text>
+        {user.roles.includes(premiumRoleID) && (
+          <Image
+            source={require('../../../assets/icon/premium-icon.png')}
+            style={styles.badge}
+          />
+        )}
       </View>
       {renderMenu()}
     </TouchableOpacity>

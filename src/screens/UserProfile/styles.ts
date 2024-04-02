@@ -13,6 +13,12 @@ export const useStyles = () => {
       width: '100%',
       justifyContent: 'flex-start',
     },
+    displayNameView: {
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
     loadingIndicator: {
       flex: 1,
       justifyContent: 'center',
@@ -23,6 +29,12 @@ export const useStyles = () => {
       left: 0,
       right: 0,
       zIndex: 9999,
+    },
+    badge: {
+      width: 18,
+      height: 18,
+      marginBottom: 6,
+      marginLeft: 4,
     },
     dotIcon: {
       width: 16,
