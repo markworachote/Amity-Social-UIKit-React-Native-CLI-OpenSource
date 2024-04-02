@@ -124,9 +124,11 @@ export default function CommunityHome({ route }: any) {
       },
       async ({ data: posts }) => {
         const pendingPost = await amityPostsFormatter(posts);
-        setPendingPosts(pendingPost);
-        subscribePostTopic('community');
-        setIsShowPendingArea(true);
+        if (pending.length > 0) {
+          setPendingPosts(pendingPost);
+          subscribePostTopic('community');
+          setIsShowPendingArea(true);
+        }
       }
     );
     disposers.push(unsubscribe);
