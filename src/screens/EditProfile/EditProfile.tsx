@@ -26,6 +26,7 @@ import { UserRepository } from '@amityco/ts-sdk-react-native';
 import useAuth from '../../hooks/useAuth';
 import { uploadImageFile } from '../../providers/file-provider';
 import { useFocusEffect } from '@react-navigation/native';
+const containsEmoji = require('contains-emoji');
 
 interface EditProfileProps {
   navigation: any;
@@ -143,10 +144,7 @@ export const EditProfile: React.FC<EditProfileProps> = ({
         userDetail.avatarCustomUrl = file[0].fileUrl;
       }
       if (!user.roles.includes('premium')) {
-        const containsEmoji = /[\uD800-\uDBFF][\uDC00-\uDFFF]/.test(
-          userDetail.displayName
-        );
-        if (containsEmoji) {
+        if (containsEmoji(userDetail.displayName)) {
           console.log('The text contains emoji.');
           openAlert('Error', 'Only Premium member can add Emoji to their name');
         } else {

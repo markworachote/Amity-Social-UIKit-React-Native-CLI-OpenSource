@@ -8,9 +8,9 @@
   integrity sha512-1Yjs2SvM8TflER/OD3cOjhWWOZb58A2t7wpE2S9XfBYTiIl+XFhQG2bjy4Pu1I+EAlCNUzRDYDdFwFYUKvXcIA==
 
 "@amityco/ts-sdk-react-native@^6.17.0":
-  version "6.17.3"
-  resolved "https://registry.npmjs.org/@amityco/ts-sdk-react-native/-/ts-sdk-react-native-6.17.3.tgz"
-  integrity sha512-I7TPy+FquxGOhkA+s4QcDP8nTDTHSnAeM8yGdSkr5YbEaGSjQWDNIx0YgpHIGi+tamVB1Y1MBAM+YYfDZY3RTw==
+  version "6.21.0"
+  resolved "https://registry.npmjs.org/@amityco/ts-sdk-react-native/-/ts-sdk-react-native-6.21.0.tgz"
+  integrity sha512-C0wRVJWG41yCiHZKl9jRG6nUJrEpiE+6TptTw9kAvo0SY/7npsIX36ZZjG4R4/Pm9cLk8N6m2EZvorF/leEfVQ==
   dependencies:
     "@react-native-async-storage/async-storage" "^1.17.7"
     "@react-native-community/netinfo" "^9.4.1"
@@ -3832,6 +3832,13 @@ connect@^3.6.5:
     finalhandler "1.1.2"
     parseurl "~1.3.3"
     utils-merge "1.0.1"
+
+contains-emoji@^1.1.7:
+  version "1.1.7"
+  resolved "https://registry.npmjs.org/contains-emoji/-/contains-emoji-1.1.7.tgz"
+  integrity sha512-dmou8bp/Qd9yDys8Om4l4/Cw61miVjqqET+o/oK8xWO7Q588J4km3N/qqKr+PZbdoj5DyZapd2xVNWfku/dWmQ==
+  dependencies:
+    emoji-regex "^10.3.0"
 
 conventional-changelog-angular@^5.0.12:
   version "5.0.13"
